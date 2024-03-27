@@ -1,7 +1,9 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\MemberController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,8 +16,16 @@ use App\Http\Controllers\API\AuthController;
 */
 
 Route::controller(AuthController::class)->group(function () {
-    Route::post('login', 'login');
-    Route::post('register', 'register');
-    Route::post('logout', 'logout');
-    Route::post('refresh', 'refresh');
+    Route::post('admin/login', 'login');
+    Route::post('admin/register', 'register');
+    Route::post('admin/logout', 'logout');
+    Route::post('admin/refresh', 'refresh');
+});
+
+Route::controller(MemberController::class)->group(function () {
+    Route::get('members' , 'index');
+    Route::post('member' , 'store_member');
+    Route::get('member/{id}', 'show');
+    Route::put('member/{id}', 'update');
+    Route::delete('member/{id}', 'delete');
 });
