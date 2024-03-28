@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('members', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('phone');
+            $table->string('phone');
             $table->string('address');
-            $table->integer('done_exchange_sampah');
-            $table->integer('total_transaction');
-            $table->enum('member_status', ['active', 'nonactive']);
+            // $table->integer('done_exchange_sampah');
+            // $table->integer('total_transaction');
+            // $table->enum('member_status', ['active', 'nonactive']);
             $table->timestamps();
         });
     }

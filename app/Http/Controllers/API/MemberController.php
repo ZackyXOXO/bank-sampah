@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Models\Member;
+use App\Models\Todo;
+
 
 class MemberController extends Controller
 {
@@ -27,27 +29,21 @@ class MemberController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'phone' => 'required|integer|min:20',
+            'phone' => 'required|string|max:255',
             'address' => 'string|max:255',
-            'done_exchange_sampah' => 'integer|min:11',
-            'total_transaction' => 'integer|min:11',
-            // 'member_status' => 'string'
         ]);
 
         $member = Member::create([
             'name' => $request->name,
             'phone' => $request->phone,
             'address' => $request->address,
-            'done_exchange_sampah' => $request->done_exchange_sampah,
-            'total_transaction' => $request->total_transaction,
-            'member_status' => $request->member_status
         ]);
 
         return response()->json([
             'status' => 'success',
-            'message' => 'berhasil menambah member',
+            'message' => 'Todo created successfully',
             'member' => $member,
-        ], 201);
+        ]);
     }
 
     public function show($id)

@@ -12,9 +12,6 @@ class Member extends Model
     protected $fillable = [
         'name',
         'phone',
-        'address',
-        'done_exchange_sampah',
-        'total_transaction',
-        'member_status'
+        'address'
     ];
 }
