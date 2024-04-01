@@ -58,12 +58,9 @@ class MemberController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'phone' => 'required|integer|min:20',
-            'address' => 'string|max:255',
-            'done_exchange_sampah' => 'integer|min:11',
-            'total_transaction' => 'integer|min:11',
-            'member_status' => 'enum'
+            // 'name' => 'required|string|max:255',
+            // 'phone' => 'required|string|min:20',
+            // 'address' => 'string|max:255',
         ]);
 
         $member = Member::find($id);
