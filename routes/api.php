@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\MemberController;
 use App\Http\Controllers\API\TodoController;
+use App\Http\Controllers\API\BankSampahController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +40,12 @@ Route::controller(TodoController::class)->group(function () {
     Route::get('todo/{id}', 'show');
     Route::put('todo/{id}', 'update');
     Route::delete('todo/{id}', 'destroy');
+}); 
+
+Route::controller(BankSampahController::class)->group(function () {
+    Route::get('bank', 'index');
+    Route::post('bank', 'store_sampah');
+    Route::get('bank/{id}', 'show');
+    Route::put('bank/{id}', 'update');
+    Route::delete('bank/{id}', 'delete');
 }); 
