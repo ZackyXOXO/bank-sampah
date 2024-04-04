@@ -7,6 +7,8 @@ use App\Http\Controllers\API\MemberController;
 use App\Http\Controllers\API\TodoController;
 use App\Http\Controllers\API\BankSampahController;
 use App\Http\Controllers\API\CategorySampahController;
+use App\Http\Controllers\API\SampahTypeController;
+
 
 
 /*
@@ -57,4 +59,12 @@ Route::controller(CategorySampahController::class)->group(function () {
     Route::get('category/{id}', 'show');
     Route::put('category/{id}', 'update');
     Route::delete('category/{id}', 'delete');
+}); 
+
+Route::controller(SampahTypeController::class)->group(function () {
+    Route::get('type', 'index');
+    Route::post('type', 'store_type');
+    Route::get('type/{id}', 'show');
+    Route::put('type/{id}', 'update');
+    Route::delete('type/{id}', 'delete');
 }); 
