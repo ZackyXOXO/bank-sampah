@@ -173,7 +173,49 @@ class AuthController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Berhasil Memperbarui Data',
-            'user' => $user
+            'user' => $user['role']
         ], 201);
+    }
+    public function register_admin (Request $request)
+    {
+        $user = Auth::user();
+        $role = $user['role'];
+
+        if ($role == "superadmin"){
+            $validator = Validator::make($request->all(),[
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+                'phone' => 'string|',
+                'role' => 'required',
+                'password' => 'required|string|min:8',
+            ]);
+    
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 422);
+            }
+    
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'role' => $request->role,
+                'password' => Hash::make($request->password),
+            ]);
+    
+            if(!$user){
+                return response()->json([
+                    'success' => false,
+                ], 409);
+          }
+    
+          return response()->json([
+            'message' => 'User Baru Berhasil ditambahkan',
+            'user' => $user
+        ],201);
+        } else {
+            return response()->json([
+                "message" => "Hak Akses kamu tidak diizinkan :("
+            ]);
+        }
     }
 }

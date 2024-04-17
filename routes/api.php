@@ -32,7 +32,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('admin/count_admin' , 'count_admin');
     Route::put('admin/update', 'update');
     Route::put('admin/profile', 'update_data');
-
+    Route::post('superadmin/admin/reg', 'register_admin');
 });
 
 Route::controller(MemberController::class)->group(function () {
