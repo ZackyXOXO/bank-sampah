@@ -151,4 +151,29 @@ class AuthController extends Controller
             'user' => $user
         ], 201);
     }
+
+    public function update_data (Request $request) 
+    {
+        $validator = Validator::make($request->all(),[
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->password = $request->password;
+        $user->save();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Berhasil Memperbarui Data',
+            'user' => $user
+        ], 201);
+    }
 }

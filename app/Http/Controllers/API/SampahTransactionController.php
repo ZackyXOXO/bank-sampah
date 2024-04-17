@@ -18,12 +18,12 @@ class SampahTransactionController extends Controller
 
     public function index() {
         $transaksi = SampahTransaction::all();
-        $member = DB::table('members');
+        // $member = DB::table('members');
 
         return response()->json([
             "status" => "success",
             "transaksi" => $transaksi,
-            "member" => $member
+            // "member" => $member
         ]);
     }
 }

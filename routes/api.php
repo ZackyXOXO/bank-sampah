@@ -31,6 +31,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('admin/count_superadmin' , 'count_superadmin');
     Route::get('admin/count_admin' , 'count_admin');
     Route::put('admin/update', 'update');
+    Route::put('admin/profile', 'update_data');
 
 });
 
