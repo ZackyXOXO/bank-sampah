@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\BankSampah;
+use Illuminate\Support\Facades\Auth;
+
 
 class BankSampahController extends Controller
 {
@@ -41,10 +43,16 @@ class BankSampahController extends Controller
             'coordinat_bank_sampah'=> $request->coordinat_bank_sampah,
         ]);
 
+        $user = Auth::user();
+        $user->has_bank = 1;
+        $user->save();
+
+
         return response()->json([
             'status' => 'Success',
             'message' => 'Bank Sampah Berhasil ditambah!',
             'bank' => $bank,
+            'user' => $user
         ]);
     }
 
