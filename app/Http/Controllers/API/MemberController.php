@@ -21,7 +21,7 @@ class MemberController extends Controller
         $members = Member::all();
         return response()->json([
             'status' => 'success',
-            'member' => $members,
+            'members' => $members,
         ], 201);
     }
 
@@ -41,7 +41,7 @@ class MemberController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Todo created successfully',
+            'message' => 'Data member berhasil dibuat',
             'member' => $member,
         ]);
     }
@@ -86,5 +86,14 @@ class MemberController extends Controller
             'message' => 'Berhasil menghapus member',
             'member' => $member
         ], 201);
+    }
+
+    public function count_member(Request $request) 
+    {
+        $member = Member::select()->count();
+        return response()->json([
+            "status" => "Success",
+            "c_member" => $member
+        ]);
     }
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('role', ['superadmin', 'admin']);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('has_bank')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -8,6 +8,7 @@ use App\Http\Controllers\API\TodoController;
 use App\Http\Controllers\API\BankSampahController;
 use App\Http\Controllers\API\CategorySampahController;
 use App\Http\Controllers\API\SampahTypeController;
+use App\Http\Controllers\API\SampahTransactionController;
 
 
 
@@ -27,11 +28,16 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('admin/register', 'register');
     Route::post('admin/logout', 'logout');
     Route::post('admin/refresh', 'refresh');
+    Route::get('admin/count_superadmin' , 'count_superadmin');
+    Route::get('admin/count_admin' , 'count_admin');
+    Route::put('admin/update', 'update');
+
 });
 
 Route::controller(MemberController::class)->group(function () {
     Route::get('members' , 'index');
     Route::post('member' , 'store_member');
+    Route::get('member/count', 'count_member');
     Route::get('member/{id}', 'show');
     Route::put('member/{id}', 'update');
     Route::delete('member/{id}', 'delete');
@@ -68,3 +74,7 @@ Route::controller(SampahTypeController::class)->group(function () {
     Route::put('type/{id}', 'update');
     Route::delete('type/{id}', 'delete');
 }); 
+
+Route::controller(SampahTransactionController::class)->group(function() {
+    Route::get('transaksi', 'index');
+});

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\SampahTransaction;
+
 class Member extends Model
 {
     use HasFactory;
@@ -14,4 +16,8 @@ class Member extends Model
         'phone',
         'address'
     ];
+
+    public function transaction () {
+        return $this->hasMany(SampahTransaction::class);
+    }
 }

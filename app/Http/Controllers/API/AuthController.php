@@ -118,4 +118,37 @@ class AuthController extends Controller
               ], 409);
         }
     }
+
+    public function count_superadmin(Request $request)
+    {
+        $superadmin = User::query()->where('role' , '!=', 'admin')->select()->count();
+        error_log( $superadmin);
+        return response()->json([
+            "status" => "Success",
+            "c_superadmin" => $superadmin
+        ]);
+    }
+
+    public function count_admin(Request $request)
+    {
+        $admin = User::query()->where('role' , '!=', 'superadmin')->select()->count();
+        error_log($admin);
+        return response()->json([
+            "status" => "Success",
+            "c_admin" => $admin
+        ]);
+    }
+
+    public function update (Request $request)
+    {
+        $user = Auth::user();
+        $user->has_bank = $request->has_bank;
+        $user->save();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Berhasil',
+            'user' => $user
+        ], 201);
+    }
 }
