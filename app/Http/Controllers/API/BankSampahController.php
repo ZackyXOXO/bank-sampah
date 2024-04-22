@@ -18,6 +18,8 @@ class BankSampahController extends Controller
 
     public function index()
     {
+        error_log(Auth::user()->id);
+
         $banks = BankSampah::all();
         return response()->json([
             'status' => 'success',
@@ -27,12 +29,13 @@ class BankSampahController extends Controller
 
     public function store_sampah(Request $request) 
     {
+
         $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'string|max:255',
             'phone_number' => 'required|string|max:255',
             'desc_bank_sampah' => 'required|string|max:255',
-            'coordinat_bank_sampah' => 'string|max:255',
+
         ]);
 
         $bank = BankSampah::create([
@@ -40,7 +43,7 @@ class BankSampahController extends Controller
             'address' => $request->address,
             'phone_number' => $request->phone_number,
             'desc_bank_sampah' => $request->desc_bank_sampah,
-            'coordinat_bank_sampah'=> $request->coordinat_bank_sampah,
+            'created_by' => Auth::user()->name
         ]);
 
         $user = Auth::user();

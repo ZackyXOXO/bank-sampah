@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('address');
             $table->string('phone_number');
             $table->string('desc_bank_sampah');
-            $table->string('coordinat_bank_sampah');
             $table->timestamps();
         });
     }

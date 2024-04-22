@@ -156,7 +156,6 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
         ]);
 
         if ($validator->fails()) {
@@ -167,13 +166,12 @@ class AuthController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->password = $request->password;
         $user->save();
 
         return response()->json([
             'status' => 'success',
             'message' => 'Berhasil Memperbarui Data',
-            'user' => $user['role']
+            'user' => $user
         ], 201);
     }
     public function register_admin (Request $request)

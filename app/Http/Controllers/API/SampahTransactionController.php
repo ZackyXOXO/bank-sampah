@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\SampahTransaction;
 use App\Models\Member;
 
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -18,12 +19,12 @@ class SampahTransactionController extends Controller
 
     public function index() {
         $transaksi = SampahTransaction::all();
-        // $member = DB::table('members');
+        $member = DB::table('members');
 
         return response()->json([
             "status" => "success",
             "transaksi" => $transaksi,
-            // "member" => $member
+            "member" => $member
         ]);
     }
 }
